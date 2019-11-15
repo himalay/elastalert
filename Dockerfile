@@ -28,6 +28,14 @@ RUN sed -i 's/jira>=1.0.10/jira>=1.0.10,<1.0.15/g' setup.py && \
 FROM node:10-alpine
 LABEL maintainer="BitSensor <dev@bitsensor.io>"
 
+ARG ES_HOST
+ARG ES_PORT
+ARG ES_USER
+ARG ES_PASS
+ENV ES_HOST=$ES_HOST
+ENV ES_PORT=$ES_PORT
+ENV ES_USER=$ES_USER
+ENV ES_PASS=$ES_PASS
 # Set timezone for this container
 ENV TZ Etc/UTC
 

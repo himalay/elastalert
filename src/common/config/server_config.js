@@ -52,7 +52,15 @@ export default class ServerConfig {
     const self = this;
     return new Promise(function (resolve) {
       self._getConfig().then(function (config) {
-        self._validate(config);
+        const { ES_HOST, ES_PORT, ES_USER, ES_PASS } = process.env;
+        const esConfig = {
+          es_host: ES_HOST || config.es_host,
+          es_port: ES_PORT || config.es_port,
+          es_user: ES_USER || config.es_user,
+          es_pass: ES_PASS || config.es_pass
+        };
+
+        self._validate(Object.assign(config, esConfig));
         resolve();
       });
     }).then(function () {

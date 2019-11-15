@@ -3,8 +3,10 @@ import Joi from 'joi';
 
 const schema = Joi.object().keys({
   'appName': Joi.string().default('elastalert-server'),
-  'es_host': Joi.string().default('elastalert'),
+  'es_host': Joi.string().default('elasticsearch'),
   'es_port': Joi.number().default(9200),
+  'es_user': Joi.string().default(''),
+  'es_pass': Joi.string().default(''),
   'writeback_index': Joi.string().default('elastalert_status'),
   'port': Joi.number().default(3030),
   'wsport': Joi.number().default(3333),
