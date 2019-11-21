@@ -25,7 +25,7 @@ RUN sed -i 's/jira>=1.0.10/jira>=1.0.10,<1.0.15/g' setup.py && \
     python3 setup.py install && \
     pip3 install -r requirements.txt
 
-FROM node:10-alpine
+FROM node:10-alpine3.9
 LABEL maintainer="BitSensor <dev@bitsensor.io>"
 
 ARG ES_HOST
@@ -39,7 +39,7 @@ ENV ES_PASS=$ES_PASS
 # Set timezone for this container
 ENV TZ Etc/UTC
 
-RUN apk add --update --no-cache curl tzdata python2 python3=3.6.9-r2 make libmagic && \
+RUN apk add --update --no-cache curl tzdata python3=3.6.9-r2 make libmagic && \
     ln -sf python3 /usr/bin/python
 
 COPY --from=py-ea /usr/local/lib/python3.6/site-packages /usr/lib/python3.6/site-packages
